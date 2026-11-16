@@ -249,6 +249,10 @@ tensorfold info TensorFold/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-MLX-4bit
 `pull` downloads a checkpoint into the Hugging Face cache and checks what it downloads against the Hub: large files by sha256, small files by their git blob sha1.
 Large files come down in pieces over up to 16 connections, and an interrupted pull resumes with the pieces it lacks.
 It refuses a checkpoint whose `model_type` has no native family, and fetches the 27B's DFlash2 drafter for `--drafter`. `models` lists the cached checkpoints with a model type it knows, and `info` shows one checkpoint's family, format, context and memory floor.
+A gated repo (one whose terms you accept on its Hugging Face page first, such as Llama or Gemma) or a private one needs your Hugging Face token.
+`pull` reads `HF_TOKEN`, then `HUGGING_FACE_HUB_TOKEN`, then the one token file the `hf` tools read: the file `HF_TOKEN_PATH` names, else `$HF_HOME/token`, else `~/.cache/huggingface/token`, where `hf auth login` saves it.
+It sends the token only to the hub's own host (`huggingface.co`, or the host of `HF_ENDPOINT`), never to the storage hosts the hub redirects downloads to, and never prints it.
+When the hub refuses a repo, `pull` names it and says whether a token is missing or the token lacks access; without a token, Hugging Face refuses a mistyped repo name the same way.
 `models --json` prints the same list as one document for programs: `schema` 1, and each checkpoint's `repo`, `family` and `model_type`; `family` is a display title and `model_type` is the key to match on.
 `tensorfold serve REPO` serves a cached checkpoint by its repository name.
 
