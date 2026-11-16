@@ -4,6 +4,8 @@ Each release's page on GitHub has its notes and measurements. See [the 1.0.0 rel
 
 ## Unreleased
 
+- CLI: `tensorfold rm REPO[@REVISION]` removes a checkpoint `pull` cached, or one of its snapshots with the refs that name it and the blobs no other snapshot links to. It lists what goes and the bytes freed, then asks; `--yes` skips the question and `--dry-run` only lists. It refuses paths and repos the cache does not hold, and never deletes outside the repo's cache folder or through a link.
+
 - Server: temporaries a crash left beside notes and the `--slide-graph` file are cleared when the server opens their folders, only the server's own and only when their process is gone (#3132).
 
 - LFM2.5-24B-A2B on CUDA: the five prompt-stream writes whose state a prompt-cache keep copies (a slot clear, a prompt chunk, a one-row step, a verify round and a commit) take their stream from one helper that first waits for the keeps' copies, and a host test fails if a write skips it. Replies are unchanged (#2989, after #1503). Thanks to @jschmied.
