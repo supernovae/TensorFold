@@ -4,7 +4,7 @@ Each release's page on GitHub has its notes and measurements. See [the 1.0.0 rel
 
 ## Unreleased
 
-- Pull: gated and private Hugging Face repos come down with your token: `HF_TOKEN`, then `HUGGING_FACE_HUB_TOKEN`, then the one token file the `hf` tools read (`HF_TOKEN_PATH`, else `$HF_HOME/token`, else `~/.cache/huggingface/token`). The token goes only to the hub's own host (`huggingface.co`, or `HF_ENDPOINT`'s), never to the storage hosts downloads are redirected to, and is never printed; a repo the hub refuses is named, with whether a token is missing or lacks access.
+- Pull: gated and private Hugging Face repos come down with your token: `HF_TOKEN`, then `HUGGING_FACE_HUB_TOKEN`, then the one token file the `hf` tools read (`HF_TOKEN_PATH`, else `$HF_HOME/token`, else `~/.cache/huggingface/token`). The token goes only to the hub's own host (`huggingface.co`, or `HF_ENDPOINT`'s), never to the storage hosts downloads are redirected to, and is never printed; a repo the hub refuses is named, with whether a token is missing or lacks access (#3524).
 
 - Server: temporaries a crash left beside notes and the `--slide-graph` file are cleared when the server opens their folders, only the server's own and only when their process is gone (#3132).
 
